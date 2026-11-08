@@ -79,17 +79,17 @@ The ZIP appears at `dist/PLUGIN_NAME.zip`. It contains one complete plugin, incl
 
 ## Release
 
-Update the plugin files and bump `version` in each changed `plugin.json`. Plugin versions belong to individual packages. The root `VERSION` file records the version of the whole repository release.
+The repository and all plugins use one shared version. The root `VERSION` file records this version. The release command updates every `plugin.json` before it builds the ZIP files.
 
-Choose a new repository version and run from `main`:
+Choose a new version and run from `main`:
 
 ```sh
-make release VERSION=1.0.0
+make release VERSION=1.0.1
 ```
 
-Replace `1.0.0` with the new version. If you already update the root `VERSION` file, use `make release`.
+Replace `1.0.1` with the new version. If you already update the root `VERSION` file, use `make release`.
 
-The command builds the plugin ZIPs, updates `VERSION`, commits all repository changes, creates the release tag, and pushes `main` and the tag. It then creates a GitHub release with the ZIPs as download assets. A failed push stops publication. Review your changes before running it.
+The command updates `VERSION` and all plugin versions, builds the plugin ZIPs, commits all repository changes, creates the release tag, and pushes `main` and the tag. It then creates a GitHub release with the ZIPs as download assets. A failed push stops publication. Review your changes before running it.
 
 If a push or GitHub publication fails after the local release tag exists, finish that release with these commands:
 
@@ -124,7 +124,7 @@ The marketplace paths start at the repository root. Each plugin follows the Agen
 
 Keep plugin files inside `plugins/PLUGIN_NAME/`. Keep its folder name and manifest name equal. Keep the skill folder name and skill name equal. Put OpenAI presentation settings under `extensions.com.openai` in `plugin.json`.
 
-Update the plugin version when its behavior changes. Preserve existing names and presentation settings unless the change requires an update. Add new plugins to the marketplace and the table above.
+Use the next shared release version for plugin changes. The release command updates the manifest versions. Preserve existing names and presentation settings unless the change requires an update. Add new plugins to the marketplace and the table above.
 
 Keep each plugin package self-contained. Follow the [Agent Plugins format](https://agent-plugins.org/schemas/1.0.0/plugin.schema.json).
 
